@@ -99,10 +99,7 @@
   .hero{position:relative; padding:64px 0 40px; overflow:hidden;}
   .hero::before{
     content:""; position:absolute; inset:0; z-index:0;
-    background:
-      radial-gradient(650px 550px at 90% -10%, rgba(255,182,72,.28), transparent 62%),
-      radial-gradient(600px 480px at 8% 100%, rgba(255,92,46,.22), transparent 60%),
-      radial-gradient(900px 700px at 50% 40%, rgba(255,92,46,.08), transparent 70%);
+    background: radial-gradient(700px 600px at 72% 45%, rgba(20,15,12,1), var(--ink) 70%);
   }
   .hero-grid{position:relative; z-index:1; display:grid; grid-template-columns:1.05fr .95fr; gap:56px; align-items:center;}
   .hero h1{font-size:clamp(2.6rem, 5vw, 4.1rem); margin:18px 0 20px;}
@@ -115,14 +112,9 @@
 
   .hero-visual{position:relative; display:flex; align-items:center; justify-content:center; min-height:420px;}
   .hero-photo-frame{position:relative; width:420px; height:420px; display:flex; align-items:center; justify-content:center;}
-  .hero-photo-frame::before{
-    content:""; position:absolute; width:340px; height:340px; border-radius:50%;
-    background:radial-gradient(circle, rgba(255,182,72,.35), rgba(255,92,46,.14) 55%, transparent 72%);
-    filter:blur(6px);
-  }
   .hero-photo-frame::after{
-    content:""; position:absolute; bottom:6%; width:230px; height:34px; border-radius:50%;
-    background:rgba(0,0,0,.55); filter:blur(14px);
+    content:""; position:absolute; bottom:6%; width:230px; height:30px; border-radius:50%;
+    background:rgba(0,0,0,.6); filter:blur(16px);
   }
   .hero-burger-img{position:relative; z-index:1; width:115%; max-width:none; animation:idleFloat 4.5s ease-in-out infinite; filter:drop-shadow(0 25px 30px rgba(0,0,0,.55));}
 
@@ -367,24 +359,8 @@
       </div>
     </div>
     <div class="hero-visual">
-      <div class="badge-float">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C8 6 5 9.5 5 13.5A7 7 0 0 0 19 13.5C19 9.5 16 6 12 2z"/></svg>
-        Fired fresh, every order
-      </div>
       <div class="hero-photo-frame">
         <img src="bitezo-smash-burger.png" alt="Bitezo double smash burger" class="hero-burger-img">
-      </div>
-      <div class="cube-wrap">
-        <div class="cube">
-          <div class="cube-face face-front">BITEZO</div>
-          <div class="cube-face face-back">B</div>
-          <div class="cube-face face-right">B</div>
-          <div class="cube-face face-left">B</div>
-        </div>
-      </div>
-      <div class="badge-float2">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V10M18 20V4M6 20v-6"/></svg>
-        Loved by families
       </div>
     </div>
   </div>
