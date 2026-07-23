@@ -127,7 +127,13 @@
     display:flex; align-items:center; justify-content:center; perspective:1200px;
   }
   .hero-burger-stage .glow{position:absolute; width:70%; height:70%; border-radius:50%; background:radial-gradient(circle, rgba(255,106,0,.32), transparent 70%); filter:blur(10px);}
-  .hero-burger-stage img{position:relative; width:88%; filter:drop-shadow(0 40px 50px rgba(0,0,0,.7)); transform-style:preserve-3d; will-change:transform;}
+  .hero-burger-stage .glow2{width:40%; height:40%; background:radial-gradient(circle, rgba(255,200,87,.35), transparent 70%); filter:blur(24px); animation:bloomPulse 5s ease-in-out infinite;}
+  @keyframes bloomPulse{0%,100%{opacity:.6; transform:scale(1);} 50%{opacity:1; transform:scale(1.15);}}
+  .burger-3d{position:relative; width:88%; height:88%; transform-style:preserve-3d; will-change:transform;}
+  .burger-layer{
+    position:absolute; inset:0; width:100%; height:100%; object-fit:contain;
+    filter:drop-shadow(0 30px 34px rgba(0,0,0,.65)); transform-style:preserve-3d; will-change:transform; pointer-events:none;
+  }
   .floating-crumb{position:absolute; border-radius:50%; opacity:.7; filter:blur(.5px);}
 
   .scroll-cue{position:absolute; bottom:38px; left:50%; transform:translateX(-50%); display:flex; flex-direction:column; align-items:center; gap:10px; z-index:2;}
@@ -334,7 +340,13 @@
 
   <div class="hero-burger-stage" id="burgerStage">
     <div class="glow"></div>
-    <img src="bitezo-smash-burger.png" alt="Bitezo signature smash burger" id="heroBurgerImg">
+    <div class="glow glow2"></div>
+    <div class="burger-3d" id="burger3d">
+      <img class="burger-layer" data-depth="0.35" data-float="0" style="clip-path:inset(0% 0 63% 0)" src="bitezo-smash-burger.png" alt="Bitezo signature smash burger — top bun">
+      <img class="burger-layer" data-depth="0.65" data-float=".3" style="clip-path:inset(33% 0 44% 0)" src="bitezo-smash-burger.png" alt="">
+      <img class="burger-layer" data-depth="1" data-float=".6" style="clip-path:inset(47% 0 21% 0)" src="bitezo-smash-burger.png" alt="">
+      <img class="burger-layer" data-depth="1.3" data-float=".9" style="clip-path:inset(73% 0 0% 0)" src="bitezo-smash-burger.png" alt="">
+    </div>
   </div>
 
   <div class="scroll-cue"><div class="line"></div><span>Scroll</span></div>
@@ -661,17 +673,32 @@ document.querySelectorAll('.magnetic').forEach(el => {
   el.addEventListener('mouseleave', () => gsap.to(el, {x:0, y:0, duration:.5, ease:'elastic.out(1,.4)'}));
 });
 
-// ---------- Hero burger parallax tilt ----------
+// ---------- Hero burger: depth-layer parallax (ingredients separate independently) ----------
 const stage = document.getElementById('burgerStage');
-const heroImg = document.getElementById('heroBurgerImg');
+const burgerLayers = document.querySelectorAll('.burger-layer');
 if(stage){
   stage.addEventListener('mousemove', e => {
     const r = stage.getBoundingClientRect();
     const px = (e.clientX - r.left)/r.width - .5, py = (e.clientY - r.top)/r.height - .5;
-    gsap.to(heroImg, {rotateY: px*22, rotateX: -py*22, duration:.6, ease:'power2.out'});
+    burgerLayers.forEach(layer => {
+      const depth = parseFloat(layer.dataset.depth);
+      gsap.to(layer, {
+        rotateY: px*18*depth, rotateX: -py*18*depth,
+        x: px*22*depth, y: py*14*depth,
+        duration:.7, ease:'power2.out'
+      });
+    });
   });
-  stage.addEventListener('mouseleave', () => gsap.to(heroImg, {rotateY:0, rotateX:0, duration:.8, ease:'power3.out'}));
-  gsap.to(heroImg, {y:-16, duration:3, ease:'sine.inOut', yoyo:true, repeat:-1});
+  stage.addEventListener('mouseleave', () => {
+    burgerLayers.forEach(layer => gsap.to(layer, {rotateY:0, rotateX:0, x:0, y:0, duration:.9, ease:'power3.out'}));
+  });
+  // independent breathing float per ingredient layer, staggered
+  burgerLayers.forEach(layer => {
+    const f = parseFloat(layer.dataset.float);
+    gsap.to(layer, {
+      y:`+=${10 + f*8}`, duration:2.6 + f*1.2, ease:'sine.inOut', yoyo:true, repeat:-1, delay:f*.4
+    });
+  });
 }
 
 // ---------- GSAP ScrollTrigger reveals ----------
