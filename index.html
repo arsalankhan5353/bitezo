@@ -1,0 +1,645 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bitezo — Shakargarh's 1st Luxury Family Spot</title>
+<meta name="description" content="Bitezo — flame-kissed pizzas, stacked burgers, loaded wraps and creamy pasta. Shakargarh's first luxury family dining spot. Dine-in & Takeaway.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Work+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#15100D;
+    --ink-2:#241A13;
+    --ink-soft: rgba(246,237,227,.66);
+    --cream:#F6EDE3;
+    --cream-2:#19130E;
+    --paper:#1E1610;
+    --brick:#FF5C2E;
+    --brick-dark:#C23F1D;
+    --gold:#FFB648;
+    --gold-soft:#FFD48A;
+    --basil:#8FB27A;
+    --line: rgba(246,237,227,0.12);
+    --shadow: 0 20px 45px -18px rgba(0,0,0,0.6);
+    --radius: 22px;
+    --display: "Fredoka", sans-serif;
+    --body: "Work Sans", sans-serif;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:var(--body);
+    background:var(--ink);
+    color:var(--cream);
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+  img,svg{display:block; max-width:100%;}
+  a{color:inherit; text-decoration:none;}
+  ul{list-style:none;}
+  button{font-family:inherit; cursor:pointer;}
+  .container{max-width:1180px; margin:0 auto; padding:0 24px;}
+  .eyebrow{
+    font-family:var(--body); font-weight:700; font-size:.72rem; letter-spacing:.16em;
+    text-transform:uppercase; color:var(--brick); display:inline-flex; align-items:center; gap:10px;
+  }
+  .eyebrow::before{content:""; width:26px; height:2px; background:var(--brick); border-radius:2px;}
+  h1,h2,h3,h4{font-family:var(--display); font-weight:600; color:var(--cream); line-height:1.08; letter-spacing:-.01em;}
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:10px;
+    padding:15px 28px; border-radius:100px; font-weight:700; font-size:.95rem;
+    border:1.5px solid transparent; white-space:nowrap; transition:transform .25s ease, box-shadow .25s ease, background .25s ease;
+  }
+  .btn svg{width:18px; height:18px; flex-shrink:0;}
+  .btn-primary{background:var(--brick); color:var(--cream); box-shadow:0 14px 30px -12px rgba(255,92,46,.55);}
+  .btn-primary:hover{transform:translateY(-2px); box-shadow:0 18px 38px -12px rgba(255,92,46,.7);}
+  .btn-outline{background:transparent; border-color:var(--cream); color:var(--cream);}
+  .btn-outline:hover{background:var(--cream); color:var(--ink); transform:translateY(-2px);}
+  .btn-light{background:var(--paper); color:var(--cream); border-color:var(--line);}
+  .btn-light:hover{transform:translateY(-2px); box-shadow:var(--shadow);}
+
+  /* bite-mark signature mask, sized per usage via CSS classes */
+  .bite{
+    -webkit-mask-image: radial-gradient(circle var(--bite-r,14px) at var(--bite-x,80%) var(--bite-y,18%), transparent 99%, black 100%);
+    mask-image: radial-gradient(circle var(--bite-r,14px) at var(--bite-x,80%) var(--bite-y,18%), transparent 99%, black 100%);
+  }
+
+  /* ---------- Header ---------- */
+  header{
+    position:sticky; top:0; z-index:100; background:rgba(21,16,13,.88); backdrop-filter:blur(10px);
+    border-bottom:1px solid transparent; transition:border-color .3s ease, box-shadow .3s ease;
+  }
+  header.scrolled{border-color:var(--line); box-shadow:0 8px 24px -18px rgba(33,28,26,.4);}
+  .nav-row{display:flex; align-items:center; justify-content:space-between; padding:16px 24px; gap:20px;}
+  .logo{display:flex; align-items:center; gap:12px; font-family:var(--display); font-weight:700; font-size:1.5rem; color:var(--cream);}
+  .logo-mark{
+    width:42px; height:42px; border-radius:50%; background:linear-gradient(155deg, var(--brick), var(--brick-dark));
+    --bite-r:8px; --bite-x:76%; --bite-y:24%;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .logo-mark span{color:var(--gold-soft); font-family:var(--display); font-weight:700; font-size:1.15rem; font-style:italic;}
+  .logo em{font-style:italic; color:var(--brick);}
+  nav.main-nav{display:flex; align-items:center; gap:32px;}
+  nav.main-nav a{font-weight:600; font-size:.93rem; color:var(--ink-soft); position:relative; padding:4px 0;}
+  nav.main-nav a::after{content:""; position:absolute; left:0; right:0; bottom:-2px; height:2px; background:var(--brick); transform:scaleX(0); transform-origin:left; transition:transform .25s ease;}
+  nav.main-nav a:hover::after{transform:scaleX(1);}
+  .header-actions{display:flex; align-items:center; gap:12px;}
+  .call-pill{display:flex; align-items:center; gap:8px; font-weight:700; font-size:.85rem; padding:10px 16px; border-radius:100px; border:1.5px solid var(--line); background:var(--paper);}
+  .call-pill svg{width:16px; height:16px; color:var(--brick);}
+  .burger-toggle{display:none; width:44px; height:44px; border-radius:50%; border:1.5px solid var(--line); background:var(--paper); align-items:center; justify-content:center;}
+  .burger-toggle svg{width:20px; height:20px;}
+  .mobile-nav{display:none; flex-direction:column; gap:2px; padding:8px 24px 20px; background:var(--paper); border-bottom:1px solid var(--line);}
+  .mobile-nav a{padding:14px 4px; font-weight:600; border-bottom:1px solid var(--line);}
+  .mobile-nav.open{display:flex;}
+
+  /* ---------- Hero ---------- */
+  .hero{position:relative; padding:64px 0 40px; overflow:hidden;}
+  .hero::before{
+    content:""; position:absolute; inset:0; z-index:0;
+    background:
+      radial-gradient(650px 550px at 90% -10%, rgba(255,182,72,.28), transparent 62%),
+      radial-gradient(600px 480px at 8% 100%, rgba(255,92,46,.22), transparent 60%),
+      radial-gradient(900px 700px at 50% 40%, rgba(255,92,46,.08), transparent 70%);
+  }
+  .hero-grid{position:relative; z-index:1; display:grid; grid-template-columns:1.05fr .95fr; gap:56px; align-items:center;}
+  .hero h1{font-size:clamp(2.6rem, 5vw, 4.1rem); margin:18px 0 20px;}
+  .hero h1 em{font-style:italic; color:var(--brick);}
+  .hero p.lead{font-size:1.12rem; color:var(--ink-soft); max-width:480px; margin-bottom:32px;}
+  .hero-ctas{display:flex; flex-wrap:wrap; gap:14px; margin-bottom:34px;}
+  .hero-meta{display:flex; flex-wrap:wrap; gap:10px;}
+  .meta-chip{display:flex; align-items:center; gap:8px; font-size:.83rem; font-weight:600; padding:9px 15px; border-radius:100px; background:var(--paper); border:1px solid var(--line);}
+  .meta-chip svg{width:15px; height:15px; color:var(--basil);}
+
+  .hero-visual{position:relative; display:flex; align-items:center; justify-content:center; min-height:420px;}
+  .hero-photo-frame{position:relative; width:420px; height:420px; display:flex; align-items:center; justify-content:center;}
+  .hero-photo-frame::before{
+    content:""; position:absolute; width:340px; height:340px; border-radius:50%;
+    background:radial-gradient(circle, rgba(255,182,72,.35), rgba(255,92,46,.14) 55%, transparent 72%);
+    filter:blur(6px);
+  }
+  .hero-photo-frame::after{
+    content:""; position:absolute; bottom:6%; width:230px; height:34px; border-radius:50%;
+    background:rgba(0,0,0,.55); filter:blur(14px);
+  }
+  .hero-burger-img{position:relative; z-index:1; width:115%; max-width:none; animation:idleFloat 4.5s ease-in-out infinite; filter:drop-shadow(0 25px 30px rgba(0,0,0,.55));}
+
+  /* ---- gentle idle float for hero art ---- */
+  @keyframes idleFloat{
+    0%,100%{transform:translateY(0) rotate(-1deg);}
+    50%{transform:translateY(-9px) rotate(1deg);}
+  }
+
+  /* ---- spinning packaging cube ---- */
+  .cube-wrap{position:absolute; bottom:10%; left:2%; perspective:600px; width:64px; height:64px;}
+  .cube{position:relative; width:64px; height:64px; transform-style:preserve-3d; animation:spinCube 8s linear infinite;}
+  .cube-face{position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-family:var(--display); font-weight:700; font-size:.62rem; letter-spacing:.04em; border-radius:8px; border:1px solid rgba(255,255,255,.14);}
+  .face-front{background:linear-gradient(160deg,var(--brick),var(--brick-dark)); color:var(--cream); transform:translateZ(32px);}
+  .face-back{background:var(--ink-2); color:var(--gold-soft); transform:rotateY(180deg) translateZ(32px); font-size:1.1rem;}
+  .face-right{background:linear-gradient(160deg,var(--gold),var(--gold-soft)); color:var(--ink); transform:rotateY(90deg) translateZ(32px); font-size:1.1rem;}
+  .face-left{background:var(--ink-2); color:var(--cream); transform:rotateY(-90deg) translateZ(32px); font-size:1.1rem;}
+  @keyframes spinCube{
+    from{transform:rotateY(0deg) rotateX(10deg);}
+    to{transform:rotateY(360deg) rotateX(10deg);}
+  }
+  .badge-float{
+    position:absolute; top:8%; left:-6%; background:var(--ink-2); border:1px solid var(--line); color:var(--cream); padding:14px 18px; border-radius:18px;
+    box-shadow:var(--shadow); display:flex; align-items:center; gap:10px; font-weight:700; font-size:.82rem; max-width:180px;
+  }
+  .badge-float svg{width:22px; height:22px; color:var(--gold-soft); flex-shrink:0;}
+  .badge-float2{
+    position:absolute; bottom:2%; right:-2%; background:var(--paper); padding:14px 18px; border-radius:18px; border:1px solid var(--line);
+    box-shadow:var(--shadow); font-weight:700; font-size:.82rem; display:flex; align-items:center; gap:10px;
+  }
+  .badge-float2 svg{width:20px; height:20px; color:var(--brick);}
+
+  /* ---------- Ticker ---------- */
+  .ticker-wrap{background:var(--ink); overflow:hidden; padding:14px 0; border-top:1px solid rgba(255,255,255,.08); border-bottom:1px solid rgba(255,255,255,.08);}
+  .ticker{display:flex; width:max-content; animation:scrollTicker 26s linear infinite;}
+  .ticker span{
+    display:flex; align-items:center; gap:14px; padding:0 28px; font-family:var(--display); font-style:italic; font-weight:600;
+    font-size:1.15rem; color:var(--gold-soft); white-space:nowrap;
+  }
+  .ticker span::after{content:"◆"; color:var(--brick); font-size:.6rem; margin-left:14px;}
+  @keyframes scrollTicker{from{transform:translateX(0);} to{transform:translateX(-50%);}}
+
+  /* ---------- Section shared ---------- */
+  section{padding:96px 0;}
+  .section-head{max-width:640px; margin-bottom:52px;}
+  .section-head h2{font-size:clamp(2rem, 3.6vw, 2.8rem); margin-top:14px;}
+  .section-head p{color:var(--ink-soft); margin-top:14px; font-size:1.03rem;}
+  .section-head.center{margin-left:auto; margin-right:auto; text-align:center;}
+
+  /* ---------- Menu ---------- */
+  .menu{background:var(--paper);}
+  .tabs{display:flex; flex-wrap:wrap; gap:10px; margin-bottom:44px;}
+  .tab-btn{
+    padding:12px 22px; border-radius:100px; border:1.5px solid var(--line); background:transparent; font-weight:700; font-size:.9rem;
+    color:var(--ink-soft); display:flex; align-items:center; gap:9px; transition:all .25s ease;
+  }
+  .tab-btn svg{width:18px; height:18px;}
+  .tab-btn.active{background:var(--brick); border-color:var(--brick); color:var(--cream);}
+  .menu-grid{display:grid; grid-template-columns:repeat(2, 1fr); gap:18px;}
+  .menu-panel{display:none;}
+  .menu-panel.active{display:grid; grid-template-columns:repeat(2, 1fr); gap:18px; animation:fadeUp .5s ease both;}
+  @keyframes fadeUp{from{opacity:0; transform:translateY(14px);} to{opacity:1; transform:translateY(0);}}
+  .menu-item{
+    display:flex; gap:18px; align-items:flex-start; padding:22px; border-radius:18px; border:1px solid var(--line);
+    background:var(--ink-2); transition:transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+  }
+  .menu-item:hover{transform:translateY(-4px); box-shadow:var(--shadow); border-color:var(--brick);}
+  .menu-icon{
+    width:58px; height:58px; border-radius:50%; flex-shrink:0; display:flex; align-items:center; justify-content:center;
+    background:linear-gradient(160deg, var(--gold-soft), var(--gold)); --bite-r:9px; --bite-x:78%; --bite-y:22%;
+  }
+  .menu-icon svg{width:30px; height:30px; color:var(--ink);}
+  .menu-icon-photo{background:var(--ink-2); overflow:hidden;}
+  .menu-icon-photo img{width:130%; height:130%; object-fit:cover;}
+  .menu-item-featured{grid-column:1 / -1; align-items:center; gap:26px; background:linear-gradient(120deg, var(--ink-2), var(--paper)); border-color:var(--brick);}
+  .menu-feature-photo{width:140px; height:140px; flex-shrink:0; border-radius:20px; overflow:hidden; display:flex; align-items:center; justify-content:center; background:radial-gradient(circle, rgba(255,182,72,.2), transparent 70%);}
+  .menu-feature-photo img{width:150%; max-width:none; filter:drop-shadow(0 10px 14px rgba(0,0,0,.5));}
+  .menu-item-featured .menu-item-top h4{font-size:1.25rem;}
+  .menu-item-featured .menu-price{font-size:1.2rem;}
+  .menu-item-body{flex:1;}
+  .menu-item-top{display:flex; justify-content:space-between; align-items:baseline; gap:10px;}
+  .menu-item-top h4{font-size:1.08rem; font-weight:600;}
+  .menu-price{font-family:var(--display); font-weight:700; color:var(--brick); font-size:1.05rem; white-space:nowrap;}
+  .menu-item p{color:var(--ink-soft); font-size:.88rem; margin-top:6px;}
+  .menu-note{margin-top:36px; font-size:.82rem; color:var(--ink-soft); font-style:italic;}
+
+  /* ---------- Best sellers ---------- */
+  .spotlight-grid{display:grid; grid-template-columns:repeat(3, 1fr); gap:24px;}
+  .spot-card{background:var(--ink-2); border:1px solid var(--line); border-radius:26px; padding:30px; position:relative; overflow:hidden; color:var(--cream); min-height:280px; display:flex; flex-direction:column; justify-content:flex-end;}
+  .spot-card::before{content:""; position:absolute; inset:0; background:radial-gradient(300px 240px at 85% 0%, rgba(232,163,61,.28), transparent 60%);}
+  .spot-num{position:absolute; top:24px; right:26px; font-family:var(--display); font-style:italic; font-size:.85rem; color:var(--gold-soft); z-index:1;}
+  .spot-icon{
+    width:64px; height:64px; border-radius:50%; background:var(--gold-soft); display:flex; align-items:center; justify-content:center;
+    --bite-r:10px; --bite-x:78%; --bite-y:22%; margin-bottom:22px; position:relative; z-index:1;
+  }
+  .spot-icon svg{width:32px; height:32px; color:var(--ink);}
+  .spot-card h4{color:var(--cream); font-size:1.3rem; position:relative; z-index:1;}
+  .spot-card p{color:rgba(246,237,227,.7); font-size:.88rem; margin-top:8px; position:relative; z-index:1;}
+  .spot-price{margin-top:14px; font-family:var(--display); font-style:italic; color:var(--gold-soft); font-size:1.1rem; position:relative; z-index:1;}
+
+  .spot-card-photo{justify-content:flex-end;}
+  .spot-photo-img{
+    position:absolute; top:-10%; right:-12%; width:78%; z-index:0; pointer-events:none;
+    filter:drop-shadow(0 18px 22px rgba(0,0,0,.5));
+  }
+  .spot-card-photo::before{background:linear-gradient(0deg, rgba(21,16,13,.96) 30%, rgba(21,16,13,.15) 75%);}
+
+  /* ---------- About ---------- */
+  .about{background:var(--cream-2);}
+  .about-grid{display:grid; grid-template-columns:.9fr 1.1fr; gap:64px; align-items:center;}
+  .about-copy p{color:var(--ink-soft); margin-bottom:16px; max-width:480px;}
+  .pillars{display:flex; flex-direction:column; gap:22px;}
+  .pillar{display:flex; gap:18px; padding:26px; background:var(--paper); border-radius:20px; border:1px solid var(--line);}
+  .pillar-icon{width:52px; height:52px; border-radius:14px; background:var(--brick); display:flex; align-items:center; justify-content:center; flex-shrink:0;}
+  .pillar-icon svg{width:26px; height:26px; color:var(--gold-soft);}
+  .pillar h4{font-size:1.05rem; margin-bottom:6px;}
+  .pillar p{color:var(--ink-soft); font-size:.9rem;}
+
+  /* ---------- Location ---------- */
+  .location-grid{display:grid; grid-template-columns:1fr 1fr; gap:0; border-radius:28px; overflow:hidden; box-shadow:var(--shadow);}
+  .location-info{background:var(--ink); color:var(--cream); padding:56px 48px; display:flex; flex-direction:column; justify-content:center;}
+  .location-info .eyebrow{color:var(--gold-soft);}
+  .location-info .eyebrow::before{background:var(--gold-soft);}
+  .location-info h2{color:var(--cream); margin:14px 0 24px;}
+  .contact-list{display:flex; flex-direction:column; gap:18px; margin-bottom:30px;}
+  .contact-row{display:flex; align-items:flex-start; gap:14px;}
+  .contact-row .ico{width:40px; height:40px; border-radius:12px; background:rgba(232,163,61,.16); display:flex; align-items:center; justify-content:center; flex-shrink:0;}
+  .contact-row .ico svg{width:20px; height:20px; color:var(--gold-soft);}
+  .contact-row a, .contact-row span{font-weight:600; color:var(--cream);}
+  .contact-row small{display:block; color:rgba(246,237,227,.55); font-size:.75rem; text-transform:uppercase; letter-spacing:.08em; margin-bottom:3px;}
+  .map-embed{min-height:420px; background:var(--cream-2); position:relative;}
+  .map-embed iframe{width:100%; height:100%; min-height:420px; border:0; filter:grayscale(.15) contrast(1.05);}
+
+  /* ---------- Footer ---------- */
+  footer{background:#0D0906; color:rgba(246,237,227,.65); padding:56px 0 26px;}
+  .footer-top{display:flex; justify-content:space-between; align-items:flex-start; flex-wrap:wrap; gap:32px; padding-bottom:36px; border-bottom:1px solid rgba(246,237,227,.12);}
+  .footer-logo{display:flex; align-items:center; gap:12px; font-family:var(--display); font-weight:700; font-size:1.4rem; color:var(--cream); margin-bottom:10px;}
+  .footer-tag{max-width:280px; font-size:.88rem;}
+  .footer-cols{display:flex; gap:64px; flex-wrap:wrap;}
+  .footer-col h5{color:var(--cream); font-size:.78rem; letter-spacing:.1em; text-transform:uppercase; margin-bottom:16px;}
+  .footer-col a, .footer-col span{display:block; font-size:.9rem; margin-bottom:10px; color:rgba(246,237,227,.65);}
+  .footer-col a:hover{color:var(--gold-soft);}
+  .footer-bottom{display:flex; justify-content:space-between; flex-wrap:wrap; gap:12px; padding-top:24px; font-size:.8rem;}
+  .social-row{display:flex; gap:10px;}
+  .social-row a{width:38px; height:38px; border-radius:50%; border:1px solid rgba(246,237,227,.2); display:flex; align-items:center; justify-content:center;}
+  .social-row a svg{width:17px; height:17px;}
+  .social-row a:hover{background:var(--brick); border-color:var(--brick);}
+
+  .whatsapp-float{
+    position:fixed; bottom:26px; right:26px; z-index:200; width:60px; height:60px; border-radius:50%; background:var(--brick);
+    display:flex; align-items:center; justify-content:center; box-shadow:0 16px 32px -12px rgba(183,53,31,.6);
+    animation:pulse 2.6s ease-in-out infinite;
+  }
+  .whatsapp-float svg{width:28px; height:28px; color:var(--cream);}
+  @keyframes pulse{0%,100%{transform:scale(1);} 50%{transform:scale(1.07);}}
+
+  @media (max-width: 980px){
+    .hero-grid{grid-template-columns:1fr;}
+    .hero-visual{order:-1; min-height:320px;}
+    .hero-photo-frame{width:280px; height:280px;}
+    .hero-photo-frame::before{width:230px; height:230px;}
+    .about-grid{grid-template-columns:1fr;}
+    .location-grid{grid-template-columns:1fr;}
+    .spotlight-grid{grid-template-columns:1fr;}
+    .menu-grid, .menu-panel.active{grid-template-columns:1fr;}
+  }
+  @media (max-width: 760px){
+    nav.main-nav, .header-actions .call-pill{display:none;}
+    .burger-toggle{display:flex;}
+    section{padding:64px 0;}
+    .badge-float, .badge-float2, .cube-wrap{display:none;}
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important;}
+    html{scroll-behavior:auto;}
+  }
+</style>
+</head>
+<body>
+
+<header id="siteHeader">
+  <div class="nav-row container">
+    <a href="#home" class="logo">
+      <span class="logo-mark bite"><span>B</span></span>
+      Bite<em>zo</em>
+    </a>
+    <nav class="main-nav">
+      <a href="#home">Home</a>
+      <a href="#menu">Menu</a>
+      <a href="#about">About</a>
+      <a href="#location">Location</a>
+    </nav>
+    <div class="header-actions">
+      <a href="tel:+923255699066" class="call-pill">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        0325-5699066
+      </a>
+      <a href="https://wa.me/923255699066?text=Hi%20Bitezo!%20I'd%20like%20to%20place%20an%20order." target="_blank" rel="noopener" class="btn btn-primary">
+        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.77.46 3.42 1.27 4.85L2 22l5.36-1.4a9.9 9.9 0 0 0 4.68 1.19h.01c5.46 0 9.9-4.45 9.9-9.91C21.96 6.45 17.5 2 12.04 2zm5.8 14.05c-.24.68-1.4 1.3-1.93 1.38-.5.08-1.13.11-1.82-.11-.42-.13-.96-.31-1.65-.6-2.9-1.25-4.8-4.17-4.94-4.36-.14-.19-1.18-1.57-1.18-3 0-1.42.75-2.12 1.02-2.41.26-.28.57-.35.76-.35.19 0 .38 0 .55.01.18.01.41-.07.64.49.24.57.81 1.98.88 2.13.07.14.12.31.02.5-.09.19-.14.31-.28.48-.14.16-.29.36-.42.48-.14.13-.28.27-.12.53.16.27.71 1.17 1.53 1.9 1.05.94 1.94 1.23 2.2 1.37.26.14.42.12.57-.07.16-.19.66-.77.84-1.03.18-.27.35-.22.59-.13.24.09 1.53.72 1.79.85.26.13.44.19.5.3.07.11.07.63-.17 1.3z"/></svg>
+        Order on WhatsApp
+      </a>
+      <button class="burger-toggle" id="burgerToggle" aria-label="Menu">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="mobile-nav" id="mobileNav">
+    <a href="#home">Home</a>
+    <a href="#menu">Menu</a>
+    <a href="#about">About</a>
+    <a href="#location">Location</a>
+    <a href="tel:+923255699066">Call: 0325-5699066</a>
+  </div>
+</header>
+
+<section class="hero" id="home">
+  <div class="container hero-grid">
+    <div>
+      <div class="eyebrow">Shakargarh's 1st Luxury Family Spot</div>
+      <h1>Take a <em>bite</em> out of the ordinary.</h1>
+      <p class="lead">Flame-kissed pizzas, stacked burgers, loaded wraps and creamy pasta — made for family tables and quick takeaway runs alike.</p>
+      <div class="hero-ctas">
+        <a href="https://wa.me/923255699066?text=Hi%20Bitezo!%20I'd%20like%20to%20place%20an%20order." target="_blank" rel="noopener" class="btn btn-primary">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.77.46 3.42 1.27 4.85L2 22l5.36-1.4a9.9 9.9 0 0 0 4.68 1.19h.01c5.46 0 9.9-4.45 9.9-9.91C21.96 6.45 17.5 2 12.04 2zm5.8 14.05c-.24.68-1.4 1.3-1.93 1.38-.5.08-1.13.11-1.82-.11-.42-.13-.96-.31-1.65-.6-2.9-1.25-4.8-4.17-4.94-4.36-.14-.19-1.18-1.57-1.18-3 0-1.42.75-2.12 1.02-2.41.26-.28.57-.35.76-.35.19 0 .38 0 .55.01.18.01.41-.07.64.49.24.57.81 1.98.88 2.13.07.14.12.31.02.5-.09.19-.14.31-.28.48-.14.16-.29.36-.42.48-.14.13-.28.27-.12.53.16.27.71 1.17 1.53 1.9 1.05.94 1.94 1.23 2.2 1.37.26.14.42.12.57-.07.16-.19.66-.77.84-1.03.18-.27.35-.22.59-.13.24.09 1.53.72 1.79.85.26.13.44.19.5.3.07.11.07.63-.17 1.3z"/></svg>
+          Order on WhatsApp
+        </a>
+        <a href="#menu" class="btn btn-outline">See Full Menu</a>
+      </div>
+      <div class="hero-meta">
+        <div class="meta-chip">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-6 9 6v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+          Dine-in
+        </div>
+        <div class="meta-chip">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="7" width="15" height="13" rx="2"/><path d="M16 11h3l3 3v3a2 2 0 0 1-2 2h-1"/><circle cx="6" cy="20" r="1.6"/><circle cx="16.5" cy="20" r="1.6"/></svg>
+          Takeaway
+        </div>
+        <div class="meta-chip">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          Family Friendly
+        </div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="badge-float">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C8 6 5 9.5 5 13.5A7 7 0 0 0 19 13.5C19 9.5 16 6 12 2z"/></svg>
+        Fired fresh, every order
+      </div>
+      <div class="hero-photo-frame">
+        <img src="bitezo-smash-burger.png" alt="Bitezo double smash burger" class="hero-burger-img">
+      </div>
+      <div class="cube-wrap">
+        <div class="cube">
+          <div class="cube-face face-front">BITEZO</div>
+          <div class="cube-face face-back">B</div>
+          <div class="cube-face face-right">B</div>
+          <div class="cube-face face-left">B</div>
+        </div>
+      </div>
+      <div class="badge-float2">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20V10M18 20V4M6 20v-6"/></svg>
+        Loved by families
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="ticker-wrap">
+  <div class="ticker" id="ticker">
+    <span>Pizza</span><span>Burgers</span><span>Wraps</span><span>Pasta</span><span>Dine-in</span><span>Takeaway</span>
+    <span>Pizza</span><span>Burgers</span><span>Wraps</span><span>Pasta</span><span>Dine-in</span><span>Takeaway</span>
+  </div>
+</div>
+
+<section class="menu" id="menu">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">The Menu</div>
+      <h2>Something for everyone at the table.</h2>
+      <p>Hand-picked favorites — from wood-fired pizza to creamy pasta. Prices below are starting points; ask our team for the full price list and current sizes.</p>
+    </div>
+
+    <div class="tabs" id="tabs">
+      <button class="tab-btn active" data-tab="pizza">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c4 5 8 11 8 13a8 8 0 0 1-16 0c0-2 4-8 8-13z"/></svg>
+        Pizza
+      </button>
+      <button class="tab-btn" data-tab="burgers">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11h16a1 1 0 0 1 1 1 6 6 0 0 1-6 6H9a6 6 0 0 1-6-6 1 1 0 0 1 1-1z"/><path d="M5 11a7 5 0 0 1 14 0"/><path d="M3.5 17h17"/></svg>
+        Burgers
+      </button>
+      <button class="tab-btn" data-tab="wraps">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4c8 0 14 6 14 14" /><path d="M6 4v16" /><path d="M6 4C6 4 12 6 12 12s-6 8-6 8" /></svg>
+        Wraps
+      </button>
+      <button class="tab-btn" data-tab="pasta">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 5 0 0 0 18 0"/><path d="M3 12a9 5 0 0 1 18 0"/><path d="M7 10c1 2 1 3 0 5M12 9c1 2 1 4 0 6M17 10c1 2 1 3 0 5"/></svg>
+        Pasta
+      </button>
+    </div>
+
+    <div class="menu-panel active" data-panel="pizza">
+      <div class="menu-item"><div class="menu-icon bite"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c4 5 8 11 8 13a8 8 0 0 1-16 0c0-2 4-8 8-13z"/></svg></div>
+        <div class="menu-item-body"><div class="menu-item-top"><h4>Chicken Tikka Pizza</h4><span class="menu-price">Rs 899</span></div><p>Spiced tikka chicken, onions and peppers over melted mozzarella.</p></div></div>
+      <div class="menu-item"><div class="menu-icon bite"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c4 5 8 11 8 13a8 8 0 0 1-16 0c0-2 4-8 8-13z"/></svg></div>
+        <div class="menu-item-body"><div class="menu-item-top"><h4>BBQ Chicken Pizza</h4><span class="menu-price">Rs 949</span></div><p>Smoky BBQ sauce, grilled chicken and a double cheese finish.</p></div></div>
+      <div class="menu-item"><div class="menu-icon bite"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c4 5 8 11 8 13a8 8 0 0 1-16 0c0-2 4-8 8-13z"/></svg></div>
+        <div class="menu-item-body"><div class="menu-item-top"><h4>Fajita Supreme Pizza</h4><span class="menu-price">Rs 999</span></div><p>Sizzling chicken fajita, capsicum and onion on a crisp base.</p></div></div>
+      <div class="menu-item"><div class="menu-icon bite"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c4 5 8 11 8 13a8 8 0 0 1-16 0c0-2 4-8 8-13z"/></svg></div>
+        <div class="menu-item-body"><div class="menu-item-top"><h4>Cheese Lovers Pizza</h4><span class="menu-price">Rs 799</span></div><p>A four-cheese blend for the purest, gooiest bite.</p></div></div>
+      <div class="menu-item"><div class="menu-icon bite"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c4 5 8 11 8 13a8 8 0 0 1-16 0c0-2 4-8 8-13z"/></svg></div>
+        <div class="menu-item-body"><div class="menu-item-top"><h4>Pepperoni Pizza</h4><span class="menu-price">Rs 949</span></div><p>Classic pepperoni piled high on our signature sauce.</p></div></div>
+      <div class="menu-item"><div class="menu-icon bite"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c4 5 8 11 8 13a8 8 0 0 1-16 0c0-2 4-8 8-13z"/></svg></div>
+        <div class="menu-item-body"><div class="menu-item-top"><h4>Margherita Pizza</h4><span class="menu-price">Rs 699</span></div><p>Simple, fresh and cheesy — a family favorite.</p></div></div>
+    </div>
+
+    <div class="menu-panel" data-panel="burgers">
+      <div class="menu-item menu-item-featured">
+        <div class="menu-feature-photo"><img src="bitezo-smash-burger.png" alt="Bitezo Smash Burger"></div>
+        <div class="menu-item-body"><div class="menu-item-top"><h4>Bitezo Smash Burger</h4><span class="menu-price">Rs 549</span></div><p>Our house special — double smashed patty, secret sauce, melted cheese.</p></div></div>
+      <div class="menu-item"><div class="menu-icon bite"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11h16a1 1 0 0 1 1 1 6 6 0 0 1-6 6H9a6 6 0 0 1-6-6 1 1 0 0 1 1-1z"/><path d="M5 11a7 5 0 0 1 14 0"/><path d="M3.5 17h17"/></svg></div>
+        <div class="menu-item-body"><div class="menu-item-top"><h4>Zinger Burger</h4><span class="menu-price">Rs 499</span></div><p>Crispy fried chicken fillet, lettuce and mayo in a soft bun.</p></div></div>
+      <div class="menu-item"><div class="menu-icon bite"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11h16a1 1 0 0 1 1 1 6 6 0 0 1-6 6H9a6 6 0 0 1-6-6 1 1 0 0 1 1-1z"/><path d="M5 11a7 5 0 0 1 14 0"/><path d="M3.5 17h17"/></svg></div>
+        <div class="menu-item-body"><div class="menu-item-top"><h4>Grilled Chicken Burger</h4><span class="menu-price">Rs 529</span></div><p>Lightly spiced grilled fillet with fresh veggies — the lighter pick.</p></div></div>
+      <div class="menu-item"><div class="menu-icon bite"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11h16a1 1 0 0 1 1 1 6 6 0 0 1-6 6H9a6 6 0 0 1-6-6 1 1 0 0 1 1-1z"/><path d="M5 11a7 5 0 0 1 14 0"/><path d="M3.5 17h17"/></svg></div>
+        <div class="menu-item-body"><div class="menu-item-top"><h4>Beef Deluxe Burger</h4><span class="menu-price">Rs 599</span></div><p>Juicy beef patty, cheddar, pickles and house mustard mayo.</p></div></div>
+    </div>
+
+    <div class="menu-panel" data-panel="wraps">
+      <div class="menu-item"><div class="menu-icon bite"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4c8 0 14 6 14 14" /><path d="M6 4v16" /><path d="M6 4C6 4 12 6 12 12s-6 8-6 8" /></svg></div>
+        <div class="menu-item-body"><div class="menu-item-top"><h4>Chicken Shawarma Wrap</h4><span class="menu-price">Rs 399</span></div><p>Slow-spiced shawarma chicken, garlic sauce and pickles, rolled tight.</p></div></div>
+      <div class="menu-item"><div class="menu-icon bite"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4c8 0 14 6 14 14" /><path d="M6 4v16" /><path d="M6 4C6 4 12 6 12 12s-6 8-6 8" /></svg></div>
+        <div class="menu-item-body"><div class="menu-item-top"><h4>Zinger Wrap</h4><span class="menu-price">Rs 429</span></div><p>Crispy chicken strips, lettuce and mayo wrapped in soft flatbread.</p></div></div>
+      <div class="menu-item"><div class="menu-icon bite"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 4c8 0 14 6 14 14" /><path d="M6 4v16" /><path d="M6 4C6 4 12 6 12 12s-6 8-6 8" /></svg></div>
+        <div class="menu-item-body"><div class="menu-item-top"><h4>Club Wrap</h4><span class="menu-price">Rs 449</span></div><p>Grilled chicken, egg, cheese and fresh greens in one loaded roll.</p></div></div>
+    </div>
+
+    <div class="menu-panel" data-panel="pasta">
+      <div class="menu-item"><div class="menu-icon bite"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 5 0 0 0 18 0"/><path d="M3 12a9 5 0 0 1 18 0"/><path d="M7 10c1 2 1 3 0 5M12 9c1 2 1 4 0 6M17 10c1 2 1 3 0 5"/></svg></div>
+        <div class="menu-item-body"><div class="menu-item-top"><h4>Chicken Alfredo Pasta</h4><span class="menu-price">Rs 649</span></div><p>Creamy white sauce, grilled chicken and a hint of garlic and herbs.</p></div></div>
+      <div class="menu-item"><div class="menu-icon bite"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 5 0 0 0 18 0"/><path d="M3 12a9 5 0 0 1 18 0"/><path d="M7 10c1 2 1 3 0 5M12 9c1 2 1 4 0 6M17 10c1 2 1 3 0 5"/></svg></div>
+        <div class="menu-item-body"><div class="menu-item-top"><h4>Chicken Tikka Pasta</h4><span class="menu-price">Rs 629</span></div><p>A local favorite — tikka-spiced chicken folded into creamy pasta.</p></div></div>
+      <div class="menu-item"><div class="menu-icon bite"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 5 0 0 0 18 0"/><path d="M3 12a9 5 0 0 1 18 0"/><path d="M7 10c1 2 1 3 0 5M12 9c1 2 1 4 0 6M17 10c1 2 1 3 0 5"/></svg></div>
+        <div class="menu-item-body"><div class="menu-item-top"><h4>Arrabiata Pasta</h4><span class="menu-price">Rs 599</span></div><p>Spicy tomato-based pasta for those who like it hot.</p></div></div>
+    </div>
+
+    <p class="menu-note">* Menu items and prices shown are placeholders based on typical offerings — send us your real menu and pricing and we'll update this page to match exactly.</p>
+  </div>
+</section>
+
+<section class="best-sellers">
+  <div class="container">
+    <div class="section-head">
+      <div class="eyebrow">Fan Favorites</div>
+      <h2>What Shakargarh keeps coming back for.</h2>
+    </div>
+    <div class="spotlight-grid">
+      <div class="spot-card spot-card-photo">
+        <span class="spot-num">01</span>
+        <img src="bitezo-smash-burger.png" alt="Bitezo Smash Burger" class="spot-photo-img">
+        <h4>Bitezo Smash Burger</h4>
+        <p>Two smashed patties, house sauce, melted cheese.</p>
+        <div class="spot-price">Rs 549</div>
+      </div>
+      <div class="spot-card">
+        <span class="spot-num">02</span>
+        <div class="spot-icon bite"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2c4 5 8 11 8 13a8 8 0 0 1-16 0c0-2 4-8 8-13z"/></svg></div>
+        <h4>Chicken Tikka Pizza</h4>
+        <p>Spiced tikka chicken over a bubbling cheese base.</p>
+        <div class="spot-price">Rs 899</div>
+      </div>
+      <div class="spot-card">
+        <span class="spot-num">03</span>
+        <div class="spot-icon bite"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 5 0 0 0 18 0"/><path d="M3 12a9 5 0 0 1 18 0"/></svg></div>
+        <h4>Chicken Alfredo Pasta</h4>
+        <p>Creamy, garlicky, and always the table's first empty plate.</p>
+        <div class="spot-price">Rs 649</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="about" id="about">
+  <div class="container about-grid">
+    <div class="about-copy">
+      <div class="eyebrow">Our Story</div>
+      <h2>Fast food, family-style, done right.</h2>
+      <p>Bitezo opened its doors as Shakargarh's first luxury family dining spot — a place where the comfort of pizza, burgers, wraps and pasta meets a dine-in experience built for the whole family, not just a quick counter stop.</p>
+      <p>Every order is made fresh when you ask for it, whether you're settling in for dinner or grabbing a takeaway box on the way home.</p>
+      <a href="tel:+923254480361" class="btn btn-outline">Call the Restaurant</a>
+    </div>
+    <div class="pillars">
+      <div class="pillar">
+        <div class="pillar-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2C8 6 5 9.5 5 13.5A7 7 0 0 0 19 13.5C19 9.5 16 6 12 2z"/></svg></div>
+        <div><h4>Made Fresh, Always</h4><p>Nothing sits and waits — every dish is fired up after you order it.</p></div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+        <div><h4>Family-First Dining</h4><p>A dine-in space built for the whole table — not just a quick counter.</p></div>
+      </div>
+      <div class="pillar">
+        <div class="pillar-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="7" width="15" height="13" rx="2"/><path d="M16 11h3l3 3v3a2 2 0 0 1-2 2h-1"/><circle cx="6" cy="20" r="1.6"/><circle cx="16.5" cy="20" r="1.6"/></svg></div>
+        <div><h4>Dine-in or Takeaway</h4><p>Sit back and relax, or grab your order on the go — your call.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="location" id="location">
+  <div class="container">
+    <div class="location-grid">
+      <div class="location-info">
+        <div class="eyebrow">Visit or Order</div>
+        <h2>Find us in Shakargarh.</h2>
+        <div class="contact-list">
+          <div class="contact-row">
+            <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+            <div><small>Address</small><span>Shakargarh, Punjab, Pakistan</span></div>
+          </div>
+          <div class="contact-row">
+            <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+            <div><small>Order Line</small><a href="tel:+923255699066">0325-5699066</a></div>
+          </div>
+          <div class="contact-row">
+            <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+            <div><small>Landline</small><a href="tel:+923254480361">0325-4480361</a></div>
+          </div>
+          <div class="contact-row">
+            <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z" opacity="0"/><path d="M22 6l-10 7L2 6"/><rect x="2" y="4" width="20" height="16" rx="2"/></svg></div>
+            <div><small>Email</small><a href="mailto:order@thebitezo.com">order@thebitezo.com</a></div>
+          </div>
+          <div class="contact-row">
+            <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></svg></div>
+            <div><small>Instagram</small><a href="https://www.instagram.com/bitezoshakargarh" target="_blank" rel="noopener">@bitezoshakargarh</a></div>
+          </div>
+        </div>
+        <a href="https://wa.me/923255699066?text=Hi%20Bitezo!%20I'd%20like%20to%20place%20an%20order." target="_blank" rel="noopener" class="btn btn-primary" style="align-self:flex-start;">
+          <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.77.46 3.42 1.27 4.85L2 22l5.36-1.4a9.9 9.9 0 0 0 4.68 1.19h.01c5.46 0 9.9-4.45 9.9-9.91C21.96 6.45 17.5 2 12.04 2zm5.8 14.05c-.24.68-1.4 1.3-1.93 1.38-.5.08-1.13.11-1.82-.11-.42-.13-.96-.31-1.65-.6-2.9-1.25-4.8-4.17-4.94-4.36-.14-.19-1.18-1.57-1.18-3 0-1.42.75-2.12 1.02-2.41.26-.28.57-.35.76-.35.19 0 .38 0 .55.01.18.01.41-.07.64.49.24.57.81 1.98.88 2.13.07.14.12.31.02.5-.09.19-.14.31-.28.48-.14.16-.29.36-.42.48-.14.13-.28.27-.12.53.16.27.71 1.17 1.53 1.9 1.05.94 1.94 1.23 2.2 1.37.26.14.42.12.57-.07.16-.19.66-.77.84-1.03.18-.27.35-.22.59-.13.24.09 1.53.72 1.79.85.26.13.44.19.5.3.07.11.07.63-.17 1.3z"/></svg>
+          Message Us to Order
+        </a>
+      </div>
+      <div class="map-embed">
+        <iframe src="https://maps.google.com/maps?q=Shakargarh%2C%20Punjab%2C%20Pakistan&t=&z=13&ie=UTF8&iwloc=&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Bitezo location map"></iframe>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div>
+        <div class="footer-logo">
+          <span class="logo-mark bite" style="width:36px;height:36px;"><span style="font-size:.95rem;">B</span></span>
+          Bite<em style="color:var(--gold-soft); font-style:italic;">zo</em>
+        </div>
+        <p class="footer-tag">Shakargarh's 1st luxury family spot for pizza, burgers, wraps and pasta.</p>
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <h5>Explore</h5>
+          <a href="#home">Home</a>
+          <a href="#menu">Menu</a>
+          <a href="#about">About</a>
+          <a href="#location">Location</a>
+        </div>
+        <div class="footer-col">
+          <h5>Contact</h5>
+          <a href="tel:+923255699066">0325-5699066</a>
+          <a href="tel:+923254480361">0325-4480361</a>
+          <a href="mailto:order@thebitezo.com">order@thebitezo.com</a>
+        </div>
+        <div class="footer-col">
+          <h5>Follow</h5>
+          <div class="social-row">
+            <a href="https://www.instagram.com/bitezoshakargarh" target="_blank" rel="noopener" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></svg>
+            </a>
+            <a href="https://wa.me/923255699066" target="_blank" rel="noopener" aria-label="WhatsApp">
+              <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.77.46 3.42 1.27 4.85L2 22l5.36-1.4a9.9 9.9 0 0 0 4.68 1.19h.01c5.46 0 9.9-4.45 9.9-9.91C21.96 6.45 17.5 2 12.04 2z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Bitezo. All rights reserved.</span>
+      <span>Shakargarh, Punjab, Pakistan</span>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/923255699066?text=Hi%20Bitezo!%20I'd%20like%20to%20place%20an%20order." target="_blank" rel="noopener" class="whatsapp-float" aria-label="Order on WhatsApp">
+  <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.77.46 3.42 1.27 4.85L2 22l5.36-1.4a9.9 9.9 0 0 0 4.68 1.19h.01c5.46 0 9.9-4.45 9.9-9.91C21.96 6.45 17.5 2 12.04 2zm5.8 14.05c-.24.68-1.4 1.3-1.93 1.38-.5.08-1.13.11-1.82-.11-.42-.13-.96-.31-1.65-.6-2.9-1.25-4.8-4.17-4.94-4.36-.14-.19-1.18-1.57-1.18-3 0-1.42.75-2.12 1.02-2.41.26-.28.57-.35.76-.35.19 0 .38 0 .55.01.18.01.41-.07.64.49.24.57.81 1.98.88 2.13.07.14.12.31.02.5-.09.19-.14.31-.28.48-.14.16-.29.36-.42.48-.14.13-.28.27-.12.53.16.27.71 1.17 1.53 1.9 1.05.94 1.94 1.23 2.2 1.37.26.14.42.12.57-.07.16-.19.66-.77.84-1.03.18-.27.35-.22.59-.13.24.09 1.53.72 1.79.85.26.13.44.19.5.3.07.11.07.63-.17 1.3z"/></svg>
+</a>
+
+<script>
+  const header = document.getElementById('siteHeader');
+  window.addEventListener('scroll', () => {
+    header.classList.toggle('scrolled', window.scrollY > 12);
+  });
+
+  const burgerToggle = document.getElementById('burgerToggle');
+  const mobileNav = document.getElementById('mobileNav');
+  burgerToggle.addEventListener('click', () => mobileNav.classList.toggle('open'));
+  mobileNav.querySelectorAll('a').forEach(a => a.addEventListener('click', () => mobileNav.classList.remove('open')));
+
+  const tabs = document.querySelectorAll('.tab-btn');
+  const panels = document.querySelectorAll('.menu-panel');
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      panels.forEach(p => p.classList.remove('active'));
+      tab.classList.add('active');
+      document.querySelector(`.menu-panel[data-panel="${tab.dataset.tab}"]`).classList.add('active');
+    });
+  });
+</script>
+</body>
+</html>
