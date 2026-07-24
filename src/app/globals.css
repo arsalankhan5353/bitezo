@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: #050505;
+  --foreground: #ffffff;
+  --font-display: "Cormorant Garamond", serif;
+  --font-body: "Inter", sans-serif;
+}
+
+body {
+  color: var(--foreground);
+  background: var(--background);
+  font-family: var(--font-body), sans-serif;
+}
+
+@layer utilities {
+  .font-display {
+    font-family: var(--font-display), serif;
+  }
+  .glass {
+    background: rgba(255, 255, 255, 0.035);
+    backdrop-filter: blur(18px);
+    border: 1px solid rgba(255, 255, 255, 0.09);
+  }
+  .text-gradient {
+    background: linear-gradient(120deg, #ffc857, #ff6a00);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+}
