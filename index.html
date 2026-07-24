@@ -7,7 +7,8 @@
 <meta name="description" content="Bitezo — Shakargarh's first luxury family dining experience. Handcrafted gourmet burgers and wood-fired pizzas made with premium ingredients.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,500;1,600&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500;1,600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="bitezo-smash-burger.webp">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
 <script src="https://unpkg.com/lenis@1.1.14/dist/lenis.min.js"></script>
@@ -368,10 +369,10 @@
     <div class="glow"></div>
     <div class="glow glow2"></div>
     <div class="burger-3d" id="burger3d">
-      <img class="burger-layer" data-depth="0.35" data-float="0" style="clip-path:inset(0% 0 63% 0)" src="bitezo-smash-burger.png" alt="Bitezo signature smash burger — top bun">
-      <img class="burger-layer" data-depth="0.65" data-float=".3" style="clip-path:inset(33% 0 44% 0)" src="bitezo-smash-burger.png" alt="">
-      <img class="burger-layer" data-depth="1" data-float=".6" style="clip-path:inset(47% 0 21% 0)" src="bitezo-smash-burger.png" alt="">
-      <img class="burger-layer" data-depth="1.3" data-float=".9" style="clip-path:inset(73% 0 0% 0)" src="bitezo-smash-burger.png" alt="">
+      <img class="burger-layer" data-depth="0.35" data-float="0" style="clip-path:inset(0% 0 63% 0)" src="bitezo-smash-burger.webp" alt="Bitezo signature smash burger — top bun">
+      <img class="burger-layer" data-depth="0.65" data-float=".3" style="clip-path:inset(33% 0 44% 0)" src="bitezo-smash-burger.webp" alt="">
+      <img class="burger-layer" data-depth="1" data-float=".6" style="clip-path:inset(47% 0 21% 0)" src="bitezo-smash-burger.webp" alt="">
+      <img class="burger-layer" data-depth="1.3" data-float=".9" style="clip-path:inset(73% 0 0% 0)" src="bitezo-smash-burger.webp" alt="">
     </div>
   </div>
 
@@ -387,7 +388,7 @@
     </div>
     <div class="card-row">
       <div class="food-card" data-reveal>
-        <div class="photo-wrap"><img src="bitezo-smash-burger.png" alt="Bitezo Smash Burger"></div>
+        <div class="photo-wrap"><img src="bitezo-smash-burger.webp" alt="Bitezo Smash Burger"></div>
         <div class="food-card-top"><h3>Bitezo Smash</h3><span class="price">Rs 549</span></div>
         <p>Double smashed patty, secret sauce, melted cheese.</p>
       </div>
@@ -507,7 +508,7 @@
       <p>Send over your food and kitchen photography and this whole wall updates with the real thing.</p>
     </div>
     <div class="gallery-grid">
-      <div class="gallery-item wide tall" data-reveal><img src="bitezo-smash-burger.png" alt="Bitezo Smash Burger"><span class="tag">Bitezo Smash</span></div>
+      <div class="gallery-item wide tall" data-reveal><img src="bitezo-smash-burger.webp" alt="Bitezo Smash Burger"><span class="tag">Bitezo Smash</span></div>
       <div class="gallery-item" data-reveal><div class="gallery-placeholder">Pizza<br>photo</div></div>
       <div class="gallery-item" data-reveal><div class="gallery-placeholder">Kitchen<br>photo</div></div>
       <div class="gallery-item tall" data-reveal><div class="gallery-placeholder">Interior<br>photo</div></div>
@@ -831,9 +832,12 @@ function spawn(){
     life: 1, color: Math.random() > .5 ? '255,106,0' : '255,213,74'
   });
 }
+const isSmall = window.innerWidth < 760;
+const emberCap = isSmall ? 30 : 70;
 function tick(){
+  if(document.hidden){ requestAnimationFrame(tick); return; }
   ctx.clearRect(0,0,W,H);
-  if(particles.length < 70 && Math.random() > .5) spawn();
+  if(particles.length < emberCap && Math.random() > .5) spawn();
   particles.forEach(p => {
     p.x += p.vx; p.y += p.vy; p.life -= 0.0025;
     ctx.beginPath();
