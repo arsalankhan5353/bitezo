@@ -11,11 +11,12 @@ const config: Config = {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
-        bg: "#050505",
-        bg2: "#111111",
-        accent: "#FF6A00",
-        accent2: "#FFC857",
-        muted: "#AFAFAF",
+        bg: "#FAF7F2",
+        bg2: "#FFFFFF",
+        ink: "#14110E",
+        accent: "#FF5A1F",
+        accent2: "#E4231C",
+        muted: "#6B675F",
       },
       fontFamily: {
         display: ["var(--font-display)", "serif"],

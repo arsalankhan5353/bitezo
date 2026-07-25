@@ -88,7 +88,7 @@ export default function OrderTrackingPage({ params }: { params: Promise<{ id: st
                   <span className="text-accent2">Rs {(l.qty * l.price).toFixed(0)}</span>
                 </div>
               ))}
-              <div className="border-t border-white/10 pt-3 flex justify-between font-semibold">
+              <div className="border-t border-ink/10 pt-3 flex justify-between font-semibold">
                 <span>Total</span>
                 <span className="font-display italic text-accent2 text-lg">
                   Rs {order.subtotal.toFixed(0)}

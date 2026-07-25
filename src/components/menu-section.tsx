@@ -46,7 +46,7 @@ export default function MenuSection({ category, items }: { category: Category; i
                 )}
               </div>
               {item.is_featured && (
-                <span className="absolute top-4 right-4 text-[.6rem] uppercase tracking-widest bg-black/60 backdrop-blur px-3 py-1.5 rounded-full text-accent2 border border-white/10">
+                <span className="absolute top-4 right-4 text-[.6rem] uppercase tracking-widest bg-ink/85 backdrop-blur px-3 py-1.5 rounded-full text-accent2 border border-ink/10">
                   Best Seller
                 </span>
               )}
@@ -65,7 +65,7 @@ export default function MenuSection({ category, items }: { category: Category; i
 
               <button
                 onClick={() => add({ id: item.id, name: item.name, price: item.price })}
-                className="shrink-0 w-11 h-11 rounded-full border border-accent/40 text-accent flex items-center justify-center hover:bg-accent hover:text-black transition-colors text-xl"
+                className="shrink-0 w-11 h-11 rounded-full border border-accent/40 text-accent flex items-center justify-center hover:bg-accent hover:text-white transition-colors text-xl"
                 aria-label={`Add ${item.name} to cart`}
               >
                 +

@@ -72,7 +72,7 @@ export default function AdminOrdersPage() {
         <button
           onClick={() => setFilter("all")}
           className={`px-4 py-2 rounded-full text-xs uppercase tracking-widest border ${
-            filter === "all" ? "bg-accent text-black border-accent" : "border-white/15 text-muted"
+            filter === "all" ? "bg-accent text-white border-accent" : "border-ink/15 text-muted"
           }`}
         >
           All ({orders.length})
@@ -82,7 +82,7 @@ export default function AdminOrdersPage() {
             key={s}
             onClick={() => setFilter(s)}
             className={`px-4 py-2 rounded-full text-xs uppercase tracking-widest border ${
-              filter === s ? "bg-accent text-black border-accent" : "border-white/15 text-muted"
+              filter === s ? "bg-accent text-white border-accent" : "border-ink/15 text-muted"
             }`}
           >
             {STATUS_LABELS[s]} ({orders.filter((o) => o.status === s).length})
@@ -124,8 +124,8 @@ export default function AdminOrdersPage() {
                     onClick={() => updateStatus(order.id, s)}
                     className={`px-3 py-1.5 rounded-full text-[.7rem] uppercase tracking-widest border transition-colors ${
                       order.status === s
-                        ? "bg-accent text-black border-accent"
-                        : "border-white/15 text-muted hover:border-white/40"
+                        ? "bg-accent text-white border-accent"
+                        : "border-ink/15 text-muted hover:border-white/40"
                     }`}
                   >
                     {STATUS_LABELS[s]}
@@ -135,8 +135,8 @@ export default function AdminOrdersPage() {
                   onClick={() => updateStatus(order.id, "cancelled")}
                   className={`px-3 py-1.5 rounded-full text-[.7rem] uppercase tracking-widest border transition-colors ${
                     order.status === "cancelled"
-                      ? "bg-red-500 text-black border-red-500"
-                      : "border-white/15 text-muted hover:border-red-400"
+                      ? "bg-red-500 text-white border-red-500"
+                      : "border-ink/15 text-muted hover:border-red-400"
                   }`}
                 >
                   Cancel

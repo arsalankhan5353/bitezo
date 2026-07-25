@@ -4,7 +4,6 @@ import Nav from "@/components/nav";
 import MenuSection from "@/components/menu-section";
 import CartBar from "@/components/cart-bar";
 import HeroBurger from "@/components/hero-burger";
-import EmberParticles from "@/components/ember-particles";
 
 export const dynamic = "force-dynamic";
 
@@ -20,44 +19,37 @@ export default async function Home() {
   const menuItems = (items ?? []) as MenuItem[];
 
   return (
-    <main className="min-h-screen relative">
-      <EmberParticles />
+    <main className="min-h-screen relative bg-bg">
       <Nav />
 
-      <section className="relative min-h-[90vh] flex flex-col items-center justify-center text-center px-6 pt-32 pb-20 overflow-hidden">
-        <div
-          className="absolute inset-0 -z-10"
-          style={{
-            background:
-              "radial-gradient(900px 700px at 50% 30%, rgba(255,106,0,.16), transparent 60%), #050505",
-          }}
-        />
-        <span className="animate-fade-up text-[.72rem] font-semibold tracking-[.32em] uppercase text-accent mb-5 flex items-center gap-3">
-          <span className="w-8 h-px bg-accent" /> Shakargarh&apos;s First Luxury Family Spot{" "}
-          <span className="w-8 h-px bg-accent" />
-        </span>
-        <h1
-          className="animate-fade-up font-display font-semibold text-[clamp(2.6rem,7vw,5.5rem)] leading-[1.05] mb-6"
-          style={{ animationDelay: "0.1s" }}
-        >
-          Crafted To Satisfy
-          <br />
-          <em className="text-gradient not-italic italic">Every Craving</em>
-        </h1>
-        <p
-          className="animate-fade-up text-muted max-w-xl text-lg font-light mb-10"
-          style={{ animationDelay: "0.2s" }}
-        >
-          Handcrafted gourmet burgers and wood-fired pizzas made with premium ingredients —
-          order straight from the menu below.
-        </p>
-        <a
-          href="#menu"
-          className="animate-fade-up px-9 py-4 rounded-full bg-accent text-black text-sm font-semibold tracking-widest uppercase hover:scale-105 transition-transform"
-          style={{ animationDelay: "0.3s" }}
-        >
-          Order Now
-        </a>
+      <section className="relative min-h-[85vh] grid md:grid-cols-2 items-center gap-10 px-6 md:px-12 pt-32 pb-16 max-w-6xl mx-auto overflow-hidden">
+        <div className="text-center md:text-left">
+          <span className="animate-fade-up inline-flex items-center gap-3 text-[.72rem] font-bold tracking-[.28em] uppercase text-accent2 mb-5">
+            <span className="w-8 h-px bg-accent2" /> Shakargarh&apos;s First Luxury Family Spot
+          </span>
+          <h1
+            className="animate-fade-up font-display uppercase text-[clamp(2.8rem,6.5vw,5rem)] leading-[0.95] mb-6 text-ink"
+            style={{ animationDelay: "0.1s" }}
+          >
+            Built Like An
+            <br />
+            <span className="text-gradient">All-Star Craving.</span>
+          </h1>
+          <p
+            className="animate-fade-up text-muted max-w-md mx-auto md:mx-0 text-lg mb-8"
+            style={{ animationDelay: "0.2s" }}
+          >
+            Handcrafted gourmet burgers and wood-fired pizzas made with premium ingredients —
+            order straight from the menu below.
+          </p>
+          <a
+            href="#menu"
+            className="animate-fade-up inline-block px-9 py-4 rounded-md bg-accent text-white text-sm font-bold tracking-widest uppercase hover:bg-ink transition-colors"
+            style={{ animationDelay: "0.3s" }}
+          >
+            Order Now
+          </a>
+        </div>
 
         <HeroBurger />
       </section>

@@ -77,7 +77,7 @@ export default function CheckoutPage() {
                   <span className="text-accent2">Rs {(l.qty * l.price).toFixed(0)}</span>
                 </div>
               ))}
-              <div className="border-t border-white/10 pt-3 flex justify-between font-semibold">
+              <div className="border-t border-ink/10 pt-3 flex justify-between font-semibold">
                 <span>Total</span>
                 <span className="font-display italic text-accent2 text-lg">Rs {total.toFixed(0)}</span>
               </div>
@@ -88,21 +88,21 @@ export default function CheckoutPage() {
                 <input
                   required
                   placeholder="Your name"
-                  className="bg-transparent border-b border-white/15 focus:border-accent outline-none py-3"
+                  className="bg-transparent border-b border-ink/15 focus:border-accent outline-none py-3"
                   value={form.name}
                   onChange={(e) => setForm({ ...form, name: e.target.value })}
                 />
                 <input
                   required
                   placeholder="Phone number"
-                  className="bg-transparent border-b border-white/15 focus:border-accent outline-none py-3"
+                  className="bg-transparent border-b border-ink/15 focus:border-accent outline-none py-3"
                   value={form.phone}
                   onChange={(e) => setForm({ ...form, phone: e.target.value })}
                 />
               </div>
 
               <select
-                className="bg-transparent border-b border-white/15 focus:border-accent outline-none py-3 w-full"
+                className="bg-transparent border-b border-ink/15 focus:border-accent outline-none py-3 w-full"
                 value={form.orderType}
                 onChange={(e) => setForm({ ...form, orderType: e.target.value as typeof form.orderType })}
               >
@@ -121,7 +121,7 @@ export default function CheckoutPage() {
                 <input
                   required
                   placeholder="Delivery address"
-                  className="bg-transparent border-b border-white/15 focus:border-accent outline-none py-3 w-full"
+                  className="bg-transparent border-b border-ink/15 focus:border-accent outline-none py-3 w-full"
                   value={form.address}
                   onChange={(e) => setForm({ ...form, address: e.target.value })}
                 />
@@ -129,7 +129,7 @@ export default function CheckoutPage() {
 
               <input
                 placeholder="Notes (optional)"
-                className="bg-transparent border-b border-white/15 focus:border-accent outline-none py-3 w-full"
+                className="bg-transparent border-b border-ink/15 focus:border-accent outline-none py-3 w-full"
                 value={form.notes}
                 onChange={(e) => setForm({ ...form, notes: e.target.value })}
               />
@@ -139,7 +139,7 @@ export default function CheckoutPage() {
               <button
                 type="submit"
                 disabled={loading}
-                className="w-full py-4 rounded-full bg-accent text-black font-semibold uppercase text-sm tracking-widest disabled:opacity-50"
+                className="w-full py-4 rounded-full bg-accent text-white font-semibold uppercase text-sm tracking-widest disabled:opacity-50"
               >
                 {loading ? "Placing order…" : "Place Order"}
               </button>

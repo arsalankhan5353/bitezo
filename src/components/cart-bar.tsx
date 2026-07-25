@@ -17,7 +17,7 @@ export default function CartBar() {
           <strong>{count}</strong> item{count > 1 ? "s" : ""}
         </span>
         <span className="font-display italic text-accent2">Rs {total.toFixed(0)}</span>
-        <span className="px-4 py-2 rounded-full bg-accent text-black text-xs font-semibold uppercase tracking-widest">
+        <span className="px-4 py-2 rounded-full bg-accent text-white text-xs font-semibold uppercase tracking-widest">
           Checkout
         </span>
       </Link>

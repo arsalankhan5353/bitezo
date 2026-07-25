@@ -3,9 +3,9 @@
 @tailwind utilities;
 
 :root {
-  --background: #050505;
-  --foreground: #ffffff;
-  --font-display: "Cormorant Garamond", serif;
+  --background: #FAF7F2;
+  --foreground: #14110E;
+  --font-display: "Anton", sans-serif;
   --font-body: "Inter", sans-serif;
 }
 
@@ -17,15 +17,16 @@ body {
 
 @layer utilities {
   .font-display {
-    font-family: var(--font-display), serif;
+    font-family: var(--font-display), sans-serif;
+    letter-spacing: 0.01em;
   }
   .glass {
-    background: rgba(255, 255, 255, 0.035);
-    backdrop-filter: blur(18px);
-    border: 1px solid rgba(255, 255, 255, 0.09);
+    background: #FFFFFF;
+    border: 1px solid rgba(20, 17, 14, 0.08);
+    box-shadow: 0 12px 28px -18px rgba(20, 17, 14, 0.25);
   }
   .text-gradient {
-    background: linear-gradient(120deg, #ffc857, #ff6a00);
+    background: linear-gradient(120deg, #FF5A1F, #E4231C);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;

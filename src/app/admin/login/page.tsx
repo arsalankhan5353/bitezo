@@ -36,7 +36,7 @@ export default function AdminLoginPage() {
           required
           type="email"
           placeholder="Email"
-          className="bg-transparent border-b border-white/15 focus:border-accent outline-none py-3 w-full"
+          className="bg-transparent border-b border-ink/15 focus:border-accent outline-none py-3 w-full"
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
@@ -44,7 +44,7 @@ export default function AdminLoginPage() {
           required
           type="password"
           placeholder="Password"
-          className="bg-transparent border-b border-white/15 focus:border-accent outline-none py-3 w-full"
+          className="bg-transparent border-b border-ink/15 focus:border-accent outline-none py-3 w-full"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         />
@@ -52,7 +52,7 @@ export default function AdminLoginPage() {
         <button
           type="submit"
           disabled={loading}
-          className="w-full py-4 rounded-full bg-accent text-black font-semibold uppercase text-sm tracking-widest disabled:opacity-50"
+          className="w-full py-4 rounded-full bg-accent text-white font-semibold uppercase text-sm tracking-widest disabled:opacity-50"
         >
           {loading ? "Signing in…" : "Sign In"}
         </button>

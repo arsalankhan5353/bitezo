@@ -21,19 +21,22 @@ export default function HeroBurger() {
 
   return (
     <div
-      className="relative w-full max-w-[420px] aspect-square mx-auto flex items-center justify-center mt-10"
+      className="relative w-full max-w-[440px] aspect-square mx-auto flex items-end justify-center"
       style={{ perspective: "1200px" }}
       onMouseMove={handleMouseMove}
       onMouseLeave={handleMouseLeave}
     >
-      <div className="absolute w-[70%] h-[70%] rounded-full bg-[radial-gradient(circle,rgba(255,182,72,.35),rgba(255,92,46,.14)_55%,transparent_72%)] blur-md animate-bloom" />
-      <div className="absolute bottom-[6%] w-[58%] h-[34px] rounded-full bg-black/60 blur-xl" />
+      {/* podium / shelf */}
+      <div className="absolute bottom-[10%] w-[78%] h-[86%] rounded-2xl bg-gradient-to-b from-ink/[0.04] to-ink/[0.09] border border-ink/10" />
+      <div className="absolute bottom-[8%] w-[62%] h-[22px] rounded-full bg-ink/20 blur-xl" />
+      <div className="absolute bottom-[42%] w-[45%] h-[45%] rounded-full bg-accent/20 blur-2xl animate-bloom" />
+
       <img
         ref={imgRef}
         src="/bitezo-smash-burger.webp"
         alt="Bitezo double smash burger"
-        className="relative z-10 w-[115%] max-w-none animate-float [transition:transform_0.4s_ease-out] [transform-style:preserve-3d]"
-        style={{ filter: "drop-shadow(0 25px 30px rgba(0,0,0,.55))" }}
+        className="relative z-10 w-[78%] mb-[14%] animate-float [transition:transform_0.4s_ease-out] [transform-style:preserve-3d]"
+        style={{ filter: "drop-shadow(0 25px 24px rgba(20,17,14,.28))" }}
       />
     </div>
   );
