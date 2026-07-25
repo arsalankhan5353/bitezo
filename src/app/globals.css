@@ -33,6 +33,18 @@ body {
   }
 }
 
+@keyframes turntable {
+  0%   { transform: translateY(0) rotateY(0deg); }
+  25%  { transform: translateY(-14px) rotateY(8deg); }
+  50%  { transform: translateY(0) rotateY(0deg); }
+  75%  { transform: translateY(-14px) rotateY(-8deg); }
+  100% { transform: translateY(0) rotateY(0deg); }
+}
+.animate-turntable {
+  animation: turntable 6s ease-in-out infinite;
+  transform-style: preserve-3d;
+}
+
 @keyframes floatY {
   0%, 100% { transform: translateY(0) rotate(-1deg); }
   50% { transform: translateY(-16px) rotate(1deg); }
@@ -58,7 +70,7 @@ body {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .animate-float, .animate-bloom, .animate-fade-up {
+  .animate-float, .animate-bloom, .animate-fade-up, .animate-turntable {
     animation: none;
   }
 }

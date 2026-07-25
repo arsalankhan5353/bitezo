@@ -3,10 +3,13 @@
 import { useRef } from "react";
 
 export default function HeroBurger() {
-  const imgRef = useRef<HTMLImageElement>(null);
+  // tiltRef receives the mouse-driven tilt (inline style).
+  // spinRef runs its own independent CSS animation (continuous turntable spin + bob).
+  // Keeping them on separate elements means neither transform overwrites the other.
+  const tiltRef = useRef<HTMLDivElement>(null);
 
   function handleMouseMove(e: React.MouseEvent<HTMLDivElement>) {
-    const el = imgRef.current;
+    const el = tiltRef.current;
     if (!el) return;
     const rect = e.currentTarget.getBoundingClientRect();
     const px = (e.clientX - rect.left) / rect.width - 0.5;
@@ -15,7 +18,7 @@ export default function HeroBurger() {
   }
 
   function handleMouseLeave() {
-    const el = imgRef.current;
+    const el = tiltRef.current;
     if (el) el.style.transform = "rotateY(0deg) rotateX(0deg)";
   }
 
@@ -31,13 +34,19 @@ export default function HeroBurger() {
       <div className="absolute bottom-[8%] w-[62%] h-[22px] rounded-full bg-ink/20 blur-xl" />
       <div className="absolute bottom-[42%] w-[45%] h-[45%] rounded-full bg-accent/20 blur-2xl animate-bloom" />
 
-      <img
-        ref={imgRef}
-        src="/bitezo-smash-burger.webp"
-        alt="Bitezo double smash burger"
-        className="relative z-10 w-[78%] mb-[14%] animate-float [transition:transform_0.4s_ease-out] [transform-style:preserve-3d]"
-        style={{ filter: "drop-shadow(0 25px 24px rgba(20,17,14,.28))" }}
-      />
+      {/* tilt layer: mouse-reactive, inline transform only */}
+      <div
+        ref={tiltRef}
+        className="relative z-10 w-[78%] mb-[14%] [transition:transform_0.4s_ease-out] [transform-style:preserve-3d]"
+      >
+        {/* spin layer: independent continuous CSS animation */}
+        <img
+          src="/bitezo-smash-burger.webp"
+          alt="Bitezo double smash burger"
+          className="w-full animate-turntable"
+          style={{ filter: "drop-shadow(0 25px 24px rgba(20,17,14,.28))" }}
+        />
+      </div>
     </div>
   );
 }
