@@ -1,7 +1,5 @@
 "use client";
 
-export const dynamic = "force-dynamic";
-
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { createClient } from "@/lib/supabase/client";
@@ -10,12 +8,13 @@ import { STATUS_LABELS, STATUS_ORDER } from "@/lib/types";
 
 export default function AdminOrdersPage() {
   const router = useRouter();
-  const [supabase] = useState(() => createClient());
   const [orders, setOrders] = useState<OrderRecord[]>([]);
   const [filter, setFilter] = useState<OrderStatus | "all">("all");
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    const supabase = createClient();
+
     supabase
       .from("orders")
       .select("*")
@@ -43,13 +42,15 @@ export default function AdminOrdersPage() {
     return () => {
       supabase.removeChannel(channel);
     };
-  }, [supabase]);
+  }, []);
 
   async function updateStatus(id: string, status: OrderStatus) {
+    const supabase = createClient();
     await supabase.from("orders").update({ status }).eq("id", id);
   }
 
   async function logout() {
+    const supabase = createClient();
     await supabase.auth.signOut();
     router.push("/admin/login");
   }
