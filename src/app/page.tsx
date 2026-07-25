@@ -4,7 +4,7 @@ import Nav from "@/components/nav";
 import MenuSection from "@/components/menu-section";
 import CartBar from "@/components/cart-bar";
 
-export const revalidate = 0;
+export const dynamic = "force-dynamic";
 
 export default async function Home() {
   const supabase = await createClient();
