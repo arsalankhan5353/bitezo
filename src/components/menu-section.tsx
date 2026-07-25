@@ -16,44 +16,45 @@ export default function MenuSection({ category, items }: { category: Category; i
         </span>
         <h2 className="font-display text-3xl mt-2">{category.name} Menu</h2>
       </div>
-      <div className="grid sm:grid-cols-2 gap-5">
+      <div className="grid sm:grid-cols-2 gap-6">
         {items.map((item, i) => (
           <div
             key={item.id}
-            className="glass rounded-lg p-6 flex items-center justify-between gap-4 hover:border-accent/40 transition-colors"
+            className="glass rounded-2xl overflow-hidden hover:border-accent/40 transition-colors flex flex-col"
           >
-            <div className="flex items-center gap-5 min-w-0">
+            <div
+              className="relative h-56 flex items-center justify-center overflow-hidden"
+              style={{
+                background:
+                  "radial-gradient(circle at 50% 55%, rgba(255,200,87,.28), rgba(255,106,0,.10) 55%, transparent 75%)",
+              }}
+            >
               <div
-                className="relative shrink-0 w-20 h-20 rounded-full flex items-center justify-center overflow-hidden"
-                style={{
-                  background:
-                    "radial-gradient(circle, rgba(255,200,87,.28), rgba(255,106,0,.12) 60%, transparent 75%)",
-                }}
+                className="animate-float w-full h-full flex items-center justify-center"
+                style={{ animationDelay: `${(i % 5) * 0.3}s` }}
               >
-                <div className="animate-float" style={{ animationDelay: `${(i % 5) * 0.3}s` }}>
-                  {item.image_url ? (
-                    // eslint-disable-next-line @next/next/no-img-element
-                    <img
-                      src={item.image_url}
-                      alt={item.name}
-                      className="w-24 h-24 object-contain"
-                      style={{ filter: "drop-shadow(0 10px 12px rgba(0,0,0,.5))" }}
-                    />
-                  ) : (
-                    <CategoryIcon slug={category.slug} className="w-9 h-9 text-accent2" />
-                  )}
-                </div>
+                {item.image_url ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    src={item.image_url}
+                    alt={item.name}
+                    className="w-[85%] h-[85%] object-cover rounded-xl"
+                    style={{ filter: "drop-shadow(0 20px 24px rgba(0,0,0,.55))" }}
+                  />
+                ) : (
+                  <CategoryIcon slug={category.slug} className="w-16 h-16 text-accent2" />
+                )}
               </div>
+              {item.is_featured && (
+                <span className="absolute top-4 right-4 text-[.6rem] uppercase tracking-widest bg-black/60 backdrop-blur px-3 py-1.5 rounded-full text-accent2 border border-white/10">
+                  Best Seller
+                </span>
+              )}
+            </div>
 
+            <div className="p-6 flex items-start justify-between gap-4 flex-1">
               <div className="min-w-0">
-                <div className="flex items-baseline gap-3 flex-wrap">
-                  <h3 className="font-display text-xl">{item.name}</h3>
-                  {item.is_featured && (
-                    <span className="text-[.6rem] uppercase tracking-widest text-accent2">
-                      Best Seller
-                    </span>
-                  )}
-                </div>
+                <h3 className="font-display text-xl">{item.name}</h3>
                 {item.description && (
                   <p className="text-sm text-muted font-light mt-1">{item.description}</p>
                 )}
@@ -61,15 +62,15 @@ export default function MenuSection({ category, items }: { category: Category; i
                   Rs {item.price.toFixed(0)}
                 </span>
               </div>
-            </div>
 
-            <button
-              onClick={() => add({ id: item.id, name: item.name, price: item.price })}
-              className="shrink-0 w-11 h-11 rounded-full border border-accent/40 text-accent flex items-center justify-center hover:bg-accent hover:text-black transition-colors text-xl"
-              aria-label={`Add ${item.name} to cart`}
-            >
-              +
-            </button>
+              <button
+                onClick={() => add({ id: item.id, name: item.name, price: item.price })}
+                className="shrink-0 w-11 h-11 rounded-full border border-accent/40 text-accent flex items-center justify-center hover:bg-accent hover:text-black transition-colors text-xl"
+                aria-label={`Add ${item.name} to cart`}
+              >
+                +
+              </button>
+            </div>
           </div>
         ))}
       </div>
