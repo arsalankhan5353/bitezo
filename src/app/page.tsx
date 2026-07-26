@@ -4,6 +4,7 @@ import Nav from "@/components/nav";
 import MenuSection from "@/components/menu-section";
 import CartBar from "@/components/cart-bar";
 import HeroBurger from "@/components/hero-burger";
+import Footer from "@/components/footer";
 
 export const dynamic = "force-dynamic";
 
@@ -64,6 +65,7 @@ export default async function Home() {
         ))}
       </div>
 
+      <Footer />
       <CartBar />
     </main>
   );
