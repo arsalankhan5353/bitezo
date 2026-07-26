@@ -5,12 +5,18 @@ export type Category = {
   sort_order: number;
 };
 
+export type PriceVariant = {
+  label: string;
+  price: number;
+};
+
 export type MenuItem = {
   id: string;
   category_id: string | null;
   name: string;
   description: string | null;
-  price: number;
+  price: number | null;
+  variants: PriceVariant[] | null;
   image_url: string | null;
   is_available: boolean;
   is_featured: boolean;

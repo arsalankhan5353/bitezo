@@ -14,7 +14,7 @@ export default function MenuSection({ category, items }: { category: Category; i
         <span className="animate-float inline-block text-[.7rem] font-semibold tracking-[.28em] uppercase text-accent">
           {category.name}
         </span>
-        <h2 className="font-display text-3xl mt-2">{category.name} Menu</h2>
+        <h2 className="font-display text-3xl mt-2">{category.name}</h2>
       </div>
       <div className="grid sm:grid-cols-2 gap-6">
         {items.map((item, i) => (
@@ -29,7 +29,6 @@ export default function MenuSection({ category, items }: { category: Category; i
                   "radial-gradient(circle at 50% 55%, rgba(255,200,87,.28), rgba(255,106,0,.10) 55%, transparent 75%)",
               }}
             >
-              {/* podium shadow, matching the hero burger's shelf */}
               <div className="absolute bottom-6 w-[55%] h-4 rounded-full bg-ink/15 blur-md" />
 
               <div
@@ -59,24 +58,49 @@ export default function MenuSection({ category, items }: { category: Category; i
               )}
             </div>
 
-            <div className="p-6 flex items-start justify-between gap-4 flex-1">
-              <div className="min-w-0">
-                <h3 className="font-display text-xl">{item.name}</h3>
-                {item.description && (
-                  <p className="text-sm text-muted font-light mt-1">{item.description}</p>
+            <div className="p-6 flex-1">
+              <div className="flex items-start justify-between gap-4">
+                <div className="min-w-0">
+                  <h3 className="font-display text-xl">{item.name}</h3>
+                  {item.description && (
+                    <p className="text-sm text-muted font-light mt-1">{item.description}</p>
+                  )}
+                </div>
+
+                {!item.variants && item.price != null && (
+                  <div className="flex flex-col items-end gap-2 shrink-0">
+                    <span className="font-display italic text-accent2 text-lg">
+                      Rs {item.price.toFixed(0)}
+                    </span>
+                    <button
+                      onClick={() => add({ id: item.id, name: item.name, price: item.price! })}
+                      className="w-11 h-11 rounded-full border border-accent/40 text-accent flex items-center justify-center hover:bg-accent hover:text-white hover:scale-110 transition-all text-xl"
+                      aria-label={`Add ${item.name} to cart`}
+                    >
+                      +
+                    </button>
+                  </div>
                 )}
-                <span className="font-display italic text-accent2 text-lg mt-2 inline-block">
-                  Rs {item.price.toFixed(0)}
-                </span>
               </div>
 
-              <button
-                onClick={() => add({ id: item.id, name: item.name, price: item.price })}
-                className="shrink-0 w-11 h-11 rounded-full border border-accent/40 text-accent flex items-center justify-center hover:bg-accent hover:text-white hover:scale-110 transition-all text-xl"
-                aria-label={`Add ${item.name} to cart`}
-              >
-                +
-              </button>
+              {item.variants && (
+                <div className="flex flex-wrap gap-2 mt-4">
+                  {item.variants.map((v) => (
+                    <button
+                      key={v.label}
+                      onClick={() =>
+                        add({ id: `${item.id}-${v.label}`, name: `${item.name} (${v.label})`, price: v.price })
+                      }
+                      className="group px-3 py-2 rounded-lg border border-ink/12 hover:border-accent hover:bg-accent transition-all text-xs font-semibold text-center"
+                    >
+                      <div>{v.label}</div>
+                      <div className="text-accent2 group-hover:text-white font-display italic">
+                        Rs {v.price}
+                      </div>
+                    </button>
+                  ))}
+                </div>
+              )}
             </div>
           </div>
         ))}
