@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 import { createClient } from "@/lib/supabase/client";
 import type { OrderRecord, OrderStatus } from "@/lib/types";
 import { STATUS_LABELS, STATUS_ORDER } from "@/lib/types";
@@ -63,9 +64,14 @@ export default function AdminOrdersPage() {
         <h1 className="font-display text-3xl italic">
           Bite<span className="text-accent not-italic italic">zo</span> Admin
         </h1>
-        <button onClick={logout} className="text-xs uppercase tracking-widest text-muted hover:text-white">
-          Sign Out
-        </button>
+        <div className="flex items-center gap-6">
+          <Link href="/admin/menu" className="text-xs uppercase tracking-widest text-muted hover:text-accent">
+            Menu Photos →
+          </Link>
+          <button onClick={logout} className="text-xs uppercase tracking-widest text-muted hover:text-white">
+            Sign Out
+          </button>
+        </div>
       </div>
 
       <div className="flex gap-2 mb-8 flex-wrap">

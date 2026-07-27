@@ -1,11 +1,13 @@
 "use client";
 
+import { useState } from "react";
 import type { Category, MenuItem } from "@/lib/types";
 import { useCart } from "@/lib/cart-context";
 import CategoryIcon from "@/components/category-icon";
 
 export default function MenuSection({ category, items }: { category: Category; items: MenuItem[] }) {
   const { add } = useCart();
+  const [lightbox, setLightbox] = useState<{ src: string; alt: string } | null>(null);
   if (items.length === 0) return null;
 
   return (
@@ -40,7 +42,8 @@ export default function MenuSection({ category, items }: { category: Category; i
                   <img
                     src={item.image_url}
                     alt={item.name}
-                    className="w-[85%] h-[85%] object-cover rounded-xl"
+                    onClick={() => setLightbox({ src: item.image_url!, alt: item.name })}
+                    className="w-[85%] h-[85%] object-cover rounded-xl cursor-zoom-in"
                     style={{ filter: "drop-shadow(0 20px 20px rgba(20,17,14,.35))" }}
                   />
                 ) : (
@@ -105,6 +108,31 @@ export default function MenuSection({ category, items }: { category: Category; i
           </div>
         ))}
       </div>
+
+      {lightbox && (
+        <div
+          className="fixed inset-0 z-[999] bg-black/90 flex items-center justify-center p-6 cursor-zoom-out"
+          onClick={() => setLightbox(null)}
+        >
+          <button
+            className="absolute top-6 right-6 w-11 h-11 rounded-full bg-white/10 text-white flex items-center justify-center text-2xl hover:bg-white/20"
+            onClick={() => setLightbox(null)}
+            aria-label="Close"
+          >
+            ×
+          </button>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={lightbox.src}
+            alt={lightbox.alt}
+            className="max-w-full max-h-full rounded-lg object-contain"
+            onClick={(e) => e.stopPropagation()}
+          />
+          <span className="absolute bottom-8 text-white/70 text-sm font-display italic text-lg">
+            {lightbox.alt}
+          </span>
+        </div>
+      )}
     </section>
   );
 }
