@@ -12,14 +12,14 @@ export default function Nav() {
           </span>
         </Link>
         <nav className="hidden md:flex items-center gap-8 text-xs font-bold tracking-widest uppercase text-ink/70">
-          <a href="/#menu" className="hover:text-accent transition-colors">
+          <a href="/order#menu" className="hover:text-accent transition-colors">
             Menu
           </a>
           <Link href="/track" className="hover:text-accent transition-colors">
             Track Order
           </Link>
           <a
-            href="/#menu"
+            href="/order#menu"
             className="bg-ink text-white px-6 py-3 rounded-md hover:bg-accent transition-colors"
           >
             Order Now
