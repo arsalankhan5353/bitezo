@@ -76,7 +76,7 @@ export default function MenuSection({ category, items }: { category: Category; i
                       Rs {item.price.toFixed(0)}
                     </span>
                     <button
-                      onClick={() => add({ id: item.id, name: item.name, price: item.price! })}
+                      onClick={() => add({ id: item.id, name: item.name, price: item.price!, image_url: item.image_url })}
                       className="w-11 h-11 rounded-full border border-accent/40 text-accent flex items-center justify-center hover:bg-accent hover:text-white hover:scale-110 transition-all text-xl"
                       aria-label={`Add ${item.name} to cart`}
                     >
@@ -92,7 +92,7 @@ export default function MenuSection({ category, items }: { category: Category; i
                     <button
                       key={v.label}
                       onClick={() =>
-                        add({ id: `${item.id}-${v.label}`, name: `${item.name} (${v.label})`, price: v.price })
+                        add({ id: `${item.id}-${v.label}`, name: `${item.name} (${v.label})`, price: v.price, image_url: item.image_url })
                       }
                       className="group px-3 py-2 rounded-lg border border-ink/12 hover:border-accent hover:bg-accent transition-all text-xs font-semibold text-center"
                     >

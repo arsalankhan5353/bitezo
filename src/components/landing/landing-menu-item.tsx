@@ -61,7 +61,7 @@ export default function LandingMenuItem({ item }: { item: MenuItem }) {
             <div className="flex items-center justify-between">
               <span className="font-display italic text-accent2 text-lg">Rs {item.price.toFixed(0)}</span>
               <button
-                onClick={() => add({ id: item.id, name: item.name, price: item.price! })}
+                onClick={() => add({ id: item.id, name: item.name, price: item.price!, image_url: item.image_url })}
                 className="w-9 h-9 rounded-full border border-accent/40 text-accent flex items-center justify-center hover:bg-accent hover:text-white hover:scale-110 transition-all text-lg"
                 aria-label={`Add ${item.name} to cart`}
               >
@@ -76,7 +76,7 @@ export default function LandingMenuItem({ item }: { item: MenuItem }) {
                 <button
                   key={v.label}
                   onClick={() =>
-                    add({ id: `${item.id}-${v.label}`, name: `${item.name} (${v.label})`, price: v.price })
+                    add({ id: `${item.id}-${v.label}`, name: `${item.name} (${v.label})`, price: v.price, image_url: item.image_url })
                   }
                   className="px-2.5 py-1.5 rounded-md border border-white/10 hover:border-accent hover:bg-accent transition-all text-[.65rem] font-semibold text-white/70 hover:text-white"
                 >

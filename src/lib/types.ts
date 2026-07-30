@@ -37,6 +37,7 @@ export type CartLine = {
   name: string;
   price: number;
   qty: number;
+  image_url?: string | null;
 };
 
 export type OrderRecord = {

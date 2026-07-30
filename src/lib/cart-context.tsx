@@ -5,7 +5,7 @@ import type { CartLine } from "./types";
 
 type CartContextType = {
   lines: CartLine[];
-  add: (item: { id: string; name: string; price: number }) => void;
+  add: (item: { id: string; name: string; price: number; image_url?: string | null }) => void;
   remove: (id: string) => void;
   setQty: (id: string, qty: number) => void;
   clear: () => void;
