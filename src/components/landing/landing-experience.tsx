@@ -10,7 +10,9 @@ import ParticlesBg from "./particles-bg";
 import LandingNav from "./landing-nav";
 import SplitHeading from "./split-heading";
 import MagneticButton from "./magnetic-button";
-import TiltCard from "./tilt-card";
+import LandingMenuItem from "./landing-menu-item";
+import CartBar from "@/components/cart-bar";
+import type { Category, MenuItem } from "@/lib/types";
 
 // Three.js/R3F is a large dependency — load it only in the browser, split
 // into its own chunk, so it never blocks the initial HTML/CSS/text paint.
@@ -19,9 +21,13 @@ const HeroScene = dynamic(() => import("./hero-scene"), {
   loading: () => <div className="w-full h-full bg-[#050302]" />,
 });
 
-type PreviewItem = { id: string; name: string; price: number | null; image_url: string | null };
-
-export default function LandingExperience({ featuredItems }: { featuredItems: PreviewItem[] }) {
+export default function LandingExperience({
+  categories,
+  items,
+}: {
+  categories: Category[];
+  items: MenuItem[];
+}) {
   const [ready, setReady] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
 
@@ -110,32 +116,34 @@ export default function LandingExperience({ featuredItems }: { featuredItems: Pr
           </p>
           <div className="mt-10 flex items-center justify-center gap-4 pointer-events-auto">
             <MagneticButton href="/order">Order Now</MagneticButton>
-            <MagneticButton href="/order#menu" variant="outline">
+            <MagneticButton href="#menu" variant="outline">
               Explore Menu
             </MagneticButton>
           </div>
         </div>
       </section>
 
-      <section className="relative z-[3] py-32 px-6">
+      <section id="menu" className="relative z-[3] py-32 px-6">
         <div className="max-w-6xl mx-auto">
           <div data-reveal className="max-w-xl mb-16">
-            <span className="text-[.7rem] font-bold tracking-[.3em] uppercase text-accent">Fan Favorites</span>
-            <h2 className="font-display text-4xl mt-3">A taste of what&apos;s waiting.</h2>
+            <span className="text-[.7rem] font-bold tracking-[.3em] uppercase text-accent">The Full Menu</span>
+            <h2 className="font-display text-4xl mt-3">Everything, right here.</h2>
           </div>
-          <div data-reveal className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
-            {featuredItems.map((item) => (
-              <TiltCard
-                key={item.id}
-                name={item.name}
-                price={item.price != null ? `Rs ${item.price}` : "See menu"}
-                image={item.image_url}
-              />
-            ))}
-          </div>
-          <div data-reveal className="mt-14 text-center">
-            <MagneticButton href="/order">See Full Menu</MagneticButton>
-          </div>
+
+          {categories.map((cat) => {
+            const catItems = items.filter((i) => i.category_id === cat.id);
+            if (catItems.length === 0) return null;
+            return (
+              <div key={cat.id} data-reveal className="mb-20">
+                <h3 className="font-display text-2xl mb-6 text-accent2">{cat.name}</h3>
+                <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-6">
+                  {catItems.map((item) => (
+                    <LandingMenuItem key={item.id} item={item} />
+                  ))}
+                </div>
+              </div>
+            );
+          })}
         </div>
       </section>
 
@@ -145,6 +153,8 @@ export default function LandingExperience({ featuredItems }: { featuredItems: Pr
         </p>
         <p className="text-white/40 text-sm">Taste the love in every bite! · Noorkot Road, Near Shaikha Da Bhatta, Shakargarh</p>
       </footer>
+
+      <CartBar />
     </div>
   );
 }

@@ -25,7 +25,7 @@ export default function LandingNav() {
         </Link>
         <nav className="hidden md:flex items-center gap-9">
           {[
-            ["Menu", "/order#menu"],
+            ["Menu", "#menu"],
             ["Track Order", "/track"],
           ].map(([label, href]) => (
             <Link
