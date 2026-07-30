@@ -5,7 +5,7 @@ import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { Environment } from "@react-three/drei";
 import { EffectComposer, Bloom, DepthOfField } from "@react-three/postprocessing";
 import * as THREE from "three";
-import BurgerModel from "./burger-model";
+import RealBurgerModel from "./real-burger-model";
 import FloatingProps from "./floating-props";
 
 function MouseCamera() {
@@ -72,8 +72,8 @@ function RotatingBurger() {
   });
 
   return (
-    <group ref={group} scale={1.75}>
-      <BurgerModel />
+    <group ref={group} scale={1.05}>
+      <RealBurgerModel />
     </group>
   );
 }

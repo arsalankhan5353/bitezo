@@ -1,6 +1,7 @@
 "use client";
 
 import Floating from "./floating";
+import RealPizzaModel from "./real-pizza-model";
 
 function Fries() {
   return (
@@ -122,6 +123,9 @@ export default function FloatingProps() {
       </Floating>
       <Floating position={[-2.3, 1.1, 0.5]} orbitRadius={0.2} orbitSpeed={0.26} bobSpeed={1.15} phase={0.9}>
         <Pickle />
+      </Floating>
+      <Floating position={[2.4, 0.6, 1.1]} orbitRadius={0.28} orbitSpeed={0.16} bobSpeed={0.85} phase={1.5} rotationSpeed={[0.1, 0.3, 0.05]}>
+        <RealPizzaModel />
       </Floating>
     </>
   );
