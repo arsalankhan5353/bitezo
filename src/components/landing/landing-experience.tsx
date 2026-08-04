@@ -147,11 +147,35 @@ export default function LandingExperience({
         </div>
       </section>
 
-      <footer className="relative z-[3] border-t border-white/10 py-12 px-6 text-center">
-        <p className="font-display italic text-xl mb-2">
-          Bite<span className="text-accent">zo</span>
-        </p>
-        <p className="text-white/40 text-sm">Taste the love in every bite! · Noorkot Road, Near Shaikha Da Bhatta, Shakargarh</p>
+      <footer className="relative z-[3] border-t border-white/10 py-16 px-6">
+        <div className="max-w-6xl mx-auto flex flex-col items-center text-center gap-6">
+          <p className="font-display italic text-2xl">
+            Bite<span className="text-accent">zo</span>
+          </p>
+          <p className="text-white/40 text-sm max-w-sm">
+            Taste the love in every bite! · Noorkot Road, Near Shaikha Da Bhatta, Shakargarh
+          </p>
+          <div className="flex flex-wrap items-center justify-center gap-x-8 gap-y-3 text-sm text-white/60">
+            <a href="tel:+923255699066" className="hover:text-accent transition-colors">
+              0325-5699066
+            </a>
+            <a href="tel:+923254480361" className="hover:text-accent transition-colors">
+              0325-4480361
+            </a>
+            <a href="mailto:order@thebitezo.com" className="hover:text-accent transition-colors">
+              order@thebitezo.com
+            </a>
+            <a
+              href="https://www.instagram.com/bitezoshakargarh"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-accent transition-colors"
+            >
+              @bitezoshakargarh
+            </a>
+          </div>
+          <p className="text-white/25 text-xs">© {new Date().getFullYear()} Bitezo. All rights reserved.</p>
+        </div>
       </footer>
 
       <CartBar />

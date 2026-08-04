@@ -36,6 +36,16 @@ export default function Footer() {
               order@thebitezo.com
             </a>
           </p>
+          <p>
+            <a
+              href="https://www.instagram.com/bitezoshakargarh"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:text-accent"
+            >
+              @bitezoshakargarh
+            </a>
+          </p>
         </div>
       </div>
       <div className="border-t border-ink/10 py-5 text-center text-xs text-muted">
